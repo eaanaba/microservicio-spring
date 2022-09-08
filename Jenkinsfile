@@ -4,17 +4,16 @@ pipeline {
     skipStagesAfterUnstable()
   }
   stages {
-    stage('CHECKOUT'){
-      checkout scm
+    stage('CHECKOUT') {
+      steps {
+        checkout scm
+      }
     }
 
-    stage('BUILD'){
+    stage('BUILD') {
       steps {
-        figlet 'Build'
-        script {
-          sh "set -x; chmod +x gradlew"
-          sh "./gradlew clean build"
-        }
+        sh "set -x; chmod +x gradlew"
+        sh "./gradlew clean build"
       }
     }
     
@@ -31,8 +30,10 @@ pipeline {
     //   sh "./gradlew clean test"
     // }
 
-    stage('Test'){
-      sh "./gradlew clean test"
+    stage('Test') {
+      steps {
+        sh "./gradlew clean test"
+      }
     }
   }
 }
