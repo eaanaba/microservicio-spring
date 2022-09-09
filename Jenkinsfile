@@ -13,7 +13,9 @@ pipeline {
     stage('BUILD') {
       steps {
         sh "set -x; chmod +x gradlew"
-        sh "./gradlew clean build"
+        sh "./gradlew build -x jacocoTestReport test"
+
+        sh "./gradlew jacocoTestReport"
       }
     }
     
@@ -29,11 +31,5 @@ pipeline {
     // stage('DEPLOY'){
     //   sh "./gradlew clean test"
     // }
-
-    stage('Test') {
-      steps {
-        sh "./gradlew clean test"
-      }
-    }
   }
 }
