@@ -17,14 +17,14 @@ pipeline {
 
     stage('BUILD') {
       steps {
-        echo "BUILDING APP"
+        //echo "BUILDING APP"
         sh "set -x; chmod +x gradlew"
         sh "./gradlew build -x jacocoTestReport test"
 
-        echo "RUN TEST!"
+        // echo "RUN TEST!"
         sh "./gradlew jacocoTestReport"
 
-        echo "CHECK COVERAGE > 85%"
+        // echo "CHECK COVERAGE > 85%"
         sh "./gradlew jacocoTestCoverageVerification"
       }
     }
@@ -36,11 +36,11 @@ pipeline {
     }
 
     stage('DEPLOY'){
-      echo "BUILDING DOCKER IMAGE"
+      // echo "BUILDING DOCKER IMAGE"
       sh "./gradlew docker"
       sh "./gradlew dockerTagDockerHub"
 
-      echo "PUSHING TO DOCKER HUB"
+      // echo "PUSHING TO DOCKER HUB"
       sh "docker login -u ${DOCKER_HUB_CREDS_USR} -p ${DOCKER_HUB_CREDS_PSW}"
       sh "./gradlew dockerPushDockerHub"
     }
