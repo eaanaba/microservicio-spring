@@ -19,7 +19,8 @@ pipeline {
       steps {
         //echo "BUILDING APP"
         sh "set -x; chmod +x gradlew"
-        sh "./gradlew clean build -x jacocoTestReport test"
+        sh "./gradlew clean"
+        sh "./gradlew build -x jacocoTestReport test"
 
         // echo "RUN TEST!"
         sh "./gradlew jacocoTestReport"
