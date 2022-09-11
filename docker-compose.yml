@@ -1,0 +1,16 @@
+version: '2'
+services:
+    labfinal:
+        container_name: labfinal
+        build:
+            context: .
+        image: labfinal:latest
+        volumes:
+          - ./:/app
+        ports:
+            - 8888:8080
+        networks:
+            - spring-cloud-network
+networks:
+    spring-cloud-network:
+        driver: bridge
