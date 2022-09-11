@@ -1,8 +1,6 @@
 pipeline {
   // agent any
-  agent {
-    docker { image 'openjdk:18-slim', args '-v $HOME/.m2:/root/.m2' }
-  }
+  agent any
   environment {
     DOCKER_HUB_CREDS = credentials('docker-hub-creds')
   }
