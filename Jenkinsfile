@@ -36,13 +36,15 @@ pipeline {
     }
 
     stage('DEPLOY'){
-      // echo "BUILDING DOCKER IMAGE"
-      sh "./gradlew docker"
-      sh "./gradlew dockerTagDockerHub"
+      steps {
+        // echo "BUILDING DOCKER IMAGE"
+        sh "./gradlew docker"
+        sh "./gradlew dockerTagDockerHub"
 
-      // echo "PUSHING TO DOCKER HUB"
-      sh "docker login -u ${DOCKER_HUB_CREDS_USR} -p ${DOCKER_HUB_CREDS_PSW}"
-      sh "./gradlew dockerPushDockerHub"
+        // echo "PUSHING TO DOCKER HUB"
+        sh "docker login -u ${DOCKER_HUB_CREDS_USR} -p ${DOCKER_HUB_CREDS_PSW}"
+        sh "./gradlew dockerPushDockerHub"
+      }
     }
   }
 }
