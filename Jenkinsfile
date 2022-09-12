@@ -26,7 +26,6 @@ pipeline {
         sh "./gradlew jacocoTestReport"
 
         // echo "CHECK COVERAGE > 85%"
-        sh "rm -rf ${GRADLE_HOME}/caches/build-cache-*"
         sh "./gradlew jacocoTestCoverageVerification"
       }
     }
