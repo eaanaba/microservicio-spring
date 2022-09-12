@@ -38,7 +38,7 @@ pipeline {
 
     stage('DEPLOY'){
       steps {
-        // sh "docker login -u ${DOCKER_HUB_CREDS_USR} -p ${DOCKER_HUB_CREDS_PSW}"
+        sh "docker login -u ${DOCKER_HUB_CREDS_USR} -p ${DOCKER_HUB_CREDS_PSW}"
 
         // echo "BUILDING DOCKER IMAGE"
         sh "docker build -t labfinal ."
