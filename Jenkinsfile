@@ -8,12 +8,12 @@ pipeline {
     skipStagesAfterUnstable()
   }
   stages {
-    stage('CHECKOUT') {
-      steps {
-        checkout scm
-        sh "git checkout feature-ms-eduardoAnabalon-mensaje"
-      }
-    }
+    // stage('CHECKOUT') {
+    //   steps {
+    //     checkout scm
+    //     sh "git checkout feature-ms-eduardoAnabalon-mensaje"
+    //   }
+    // }
 
     stage('BUILD') {
       steps {
@@ -26,6 +26,7 @@ pipeline {
         sh "./gradlew jacocoTestReport"
 
         // echo "CHECK COVERAGE > 85%"
+        sh "./gradlew cleanBuildCache"
         sh "./gradlew jacocoTestCoverageVerification"
       }
     }
