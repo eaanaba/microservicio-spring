@@ -38,13 +38,17 @@ pipeline {
 
     stage('DEPLOY'){
       steps {
+        sh "docker login -u ${DOCKER_HUB_CREDS_USR} -p ${DOCKER_HUB_CREDS_PSW}"
+
         // echo "BUILDING DOCKER IMAGE"
-        sh "./gradlew docker"
-        sh "./gradlew dockerTagDockerHub"
+        sh "docker build -t labfinal ."
+        sh "docker image tag labfinal eaanaba/labfinal:0.0.1-SNAPSHOT"
+        //sh "./gradlew docker"
+        //sh "./gradlew dockerTagDockerHub"
 
         // echo "PUSHING TO DOCKER HUB"
-        sh "docker login -u ${DOCKER_HUB_CREDS_USR} -p ${DOCKER_HUB_CREDS_PSW}"
-        sh "./gradlew dockerPushDockerHub"
+        sh "docker image push eaanaba/labfinal:0.0.1-SNAPSHOT"
+        // sh "./gradlew dockerPushDockerHub"
       }
     }
   }
