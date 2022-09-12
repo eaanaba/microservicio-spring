@@ -2,9 +2,9 @@ version: '2'
 services:
     labfinal:
         container_name: labfinal
-        build:
-            context: .
-        image: labfinal:latest
+        image: eaanaba/labfinal:0.0.1-SNAPSHOT
+        # build:
+        #     context: .
         volumes:
           - ./:/app
         ports:

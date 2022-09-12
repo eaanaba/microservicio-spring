@@ -49,6 +49,8 @@ pipeline {
         // echo "PUSHING TO DOCKER HUB"
         sh "docker image push eaanaba/labfinal:0.0.1-SNAPSHOT"
         // sh "./gradlew dockerPushDockerHub"
+
+        sh "docker compose up -d"
       }
     }
   }
